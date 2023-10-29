@@ -1,4 +1,5 @@
 <?php
+
     require_once 'libs/Router.php';
     require_once 'app/api/APIProductosController.php';
 
@@ -6,7 +7,7 @@
 
     $router->addRoute('productos', 'GET', 'APIProductosController', 'getProductos');
     $router->addRoute('productos/:ID', 'GET', 'APIProductosController', 'getProducto');
-
+    $router->addRoute('productos/:ID', 'DELETE', 'APIProductosController', 'deleteProducto');
     $router->addRoute('productos', 'POST', 'APIProductosController', 'addProducto');
     $router->addRoute('productos/:ID', 'PUT', 'APIProductosController', 'updateProducto');
 

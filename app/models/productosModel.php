@@ -41,6 +41,12 @@ class productosModel {
         return $producto;
     }
 
+    function removeProducto($id) {
+        $query = $this->db->prepare('DELETE FROM lista WHERE id_producto = ?; DELETE FROM productos WHERE id_producto = ?');
+        $query->execute([$id, $id]);
+        return $query->rowCount();
+    }
+
     public function insertProducto($nombre, $descripcion, $id_categoria) {
         $query = $this->db->prepare('INSERT INTO productos (nombre, descripcion, id_categoria) VALUES (?, ?, ?)');
         $query->execute([$nombre, $descripcion, $id_categoria]);
@@ -51,6 +57,7 @@ class productosModel {
         $query = $this->db->prepare('UPDATE productos SET nombre = ?, descripcion = ?, id_categoria = ? WHERE id_producto = ?');
         return $query->execute([$nombre, $descripcion, $id_categoria, $id]);
     }
+
 }
 
 ?>

@@ -44,6 +44,17 @@ class ApiProductosController {
         }
     }
 
+    public function deleteProducto($params = null) {
+        $idProducto = $params[':ID'];
+        $success = $this->model->removeProducto($idProducto);
+        if (var_dump($success)) {
+            $this->view->response("El producto se borró exitosamente", 200);
+        }
+        else {
+            $this->view->response("El producto que se intentó borrar no existe", 404);
+        }
+    }
+
     public function addProducto($params = null) {
         $body = $this->getData();
 
@@ -61,14 +72,14 @@ class ApiProductosController {
     }
 
     public function updateProducto($params = null) {
-        $id = $params[':ID'];
+        $idProducto = $params[':ID'];
         $body = $this->getData();
 
         $nombre = $body->nombre;
         $descripcion = $body->descripcion;
         $id_categoria = $body->id_categoria;
 
-        $success = $this->model->updateProductos($nombre, $descripcion, $id_categoria, $id);
+        $success = $this->model->updateProductos($nombre, $descripcion, $id_categoria, $idProducto);
 
         if ($success) {
             $this->view->response("El producto se actualizo con exito", 200);
