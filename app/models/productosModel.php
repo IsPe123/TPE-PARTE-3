@@ -15,7 +15,7 @@ class productosModel {
 	public function getProductos($parametros) {
         $sql = 'SELECT productos.*, categorias.nombre AS categoria
         FROM productos
-        INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria;';
+        INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria';
 
         if (isset($parametros['order'])) {
             $sql .= ' ORDER BY '.$parametros['order'];
@@ -30,31 +30,27 @@ class productosModel {
 
         return $productos;
     }
-/*
-    public function get($id) {
-        $query = $this->db->prepare( "select * from tarea where id = ?");
-        $query->execute([$id]);
-        $tarea = $query->fetchAll(PDO::FETCH_OBJ);
 
-        return $tarea;
+    public function getProducto($id) {
+        $query = $this->db->prepare('SELECT productos.*, categorias.nombre AS categoria
+        FROM productos
+        INNER JOIN categorias ON productos.id_categoria = categorias.id_categoria WHERE id_producto = ?');
+        $query->execute([$id]);
+        $producto = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $producto;
     }
 
-    public function remove($id) {
-        $query = $this->db->prepare( "delete from tarea where id = ?");
-        $query->execute([$id]);
-        return $query->rowCount();
-    }
-
-    public function insert($titulo, $descripcion, $prioridad) {
-        $query = $this->db->prepare( "INSERT INTO tarea (titulo, descripcion, prioridad) VALUES (?, ?, ?)");
-        $query->execute([$titulo, $descripcion, $prioridad]);
+    public function insertProducto($nombre, $descripcion, $id_categoria) {
+        $query = $this->db->prepare('INSERT INTO productos (nombre, descripcion, id_categoria) VALUES (?, ?, ?)');
+        $query->execute([$nombre, $descripcion, $id_categoria]);
         return $this->db->lastInsertId();
     }
 
-    public function update($titulo, $descripcion, $prioridad, $id) {
-        $query = $this->db->prepare( "UPDATE tarea SET titulo = ?, descripcion = ?, prioridad = ? WHERE id = ?");
-        return $query->execute([$titulo, $descripcion, $prioridad, $id]);
-    }*/
+    public function updateProductos($nombre, $descripcion, $id_categoria, $id) {
+        $query = $this->db->prepare('UPDATE productos SET nombre = ?, descripcion = ?, id_categoria = ? WHERE id_producto = ?');
+        return $query->execute([$nombre, $descripcion, $id_categoria, $id]);
+    }
 }
 
 ?>

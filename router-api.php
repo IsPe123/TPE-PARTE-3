@@ -5,12 +5,11 @@
     $router = new Router();
 
     $router->addRoute('productos', 'GET', 'APIProductosController', 'getProductos');
-    /*$router->addRoute('tareas/:ID', 'GET', 'ApiTaskController', 'get');
-    $router->addRoute('tareas/:ID', 'DELETE', 'ApiTaskController', 'delete');
+    $router->addRoute('productos/:ID', 'GET', 'APIProductosController', 'getProducto');
 
-    $router->addRoute('tareas', 'POST', 'ApiTaskController', 'add');
-    $router->addRoute('tareas/:ID', 'PUT', 'ApiTaskController', 'update');
-    */
+    $router->addRoute('productos', 'POST', 'APIProductosController', 'addProducto');
+    $router->addRoute('productos/:ID', 'PUT', 'APIProductosController', 'updateProducto');
+
     $router->route($_GET["resource"], $_SERVER['REQUEST_METHOD']);
 
 ?>

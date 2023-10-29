@@ -33,60 +33,49 @@ class ApiProductosController {
         $productos = $this->model->getProductos($parametros);
         $this->view->response($productos, 200);
     }
-/*
-    public function get($params = null) {
-        $idTask = $params[':ID'];
-        $task = $this->model->get($idTask);
-        if ($task) {
-            $this->view->response($task, 200);
+
+    public function getProducto($params = null) {
+        $idProducto = $params[':ID'];
+        $producto = $this->model->getProducto($idProducto);
+        if ($producto) {
+            $this->view->response($producto, 200);
         } else {
-            $this->view->response("La tarea no existe(creo)", 404);
+            $this->view->response("El producto no existe", 404);
         }
     }
 
-    public function delete($params = null) {
-        $idTask = $params[':ID'];
-        $success = $this->model->remove($idTask);
-
-        if ($success) {
-            $this->view->response("La tarea se borro exitosamente", 200);
-        } else {
-            $this->view->response("La tarea no existe", 404);
-        }
-    }
-
-    public function add($params = null) {
+    public function addProducto($params = null) {
         $body = $this->getData();
 
-        $titulo = $body->titulo;
+        $nombre = $body->nombre;
         $descripcion = $body->descripcion;
-        $prioridad = $body->prioridad;
+        $id_categoria = $body->id_categoria;
 
-        $id = $this->model->insert($titulo, $descripcion, $prioridad);
+        $id = $this->model->insertProducto($nombre, $descripcion, $id_categoria);
 
         if ($id > 0) {
-            $this->view->response("La tarea se agrego con exito", 200);
+            $this->view->response("El producto se agrego con exito", 200);
         } else {
-            $this->view->response("La tarea no se pudo insertar", 500);
+            $this->view->response("El producto no se pudo agregar", 500);
         }
     }
 
-    public function update($params = null) {
-        $idTask = $params[':ID'];
+    public function updateProducto($params = null) {
+        $id = $params[':ID'];
         $body = $this->getData();
 
-        $titulo = $body->titulo;
+        $nombre = $body->nombre;
         $descripcion = $body->descripcion;
-        $prioridad = $body->prioridad;
+        $id_categoria = $body->id_categoria;
 
-        $success = $this->model->update($titulo, $descripcion, $prioridad, $idTask);
+        $success = $this->model->updateProductos($nombre, $descripcion, $id_categoria, $id);
 
         if ($success) {
-            $this->view->response("La tarea se actualizo con exito", 200);
+            $this->view->response("El producto se actualizo con exito", 200);
         } else {
-            $this->view->response("La tarea no se pudo actualizar", 500);
+            $this->view->response("El producto no se pudo actualizar", 500);
         }
-    }*/
+    }
 }
 
 ?>
