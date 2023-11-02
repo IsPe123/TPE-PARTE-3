@@ -24,6 +24,17 @@ class productosModel {
             }
         }
 
+        if (isset($parametros['limit'])) {
+            $sql .= ' LIMIT '.$parametros['limit'];
+            if (isset($parametros['offset'])) {
+                $sql .= ' OFFSET '.$parametros['offset'];
+            }
+        }
+
+        if (isset($parametros['where']) && isset($parametros['type'])) {
+            $sql .= ' WHERE productos.'. $parametros['where'] . ' = ' . $parametros['type'];
+        }
+
         $query = $this->db->prepare($sql);
         $query->execute();
         $productos = $query->fetchAll(PDO::FETCH_OBJ);
@@ -41,9 +52,14 @@ class productosModel {
         return $producto;
     }
 
+    function removeProductoDeLista($id) {
+        $query = $this->db->prepare('DELETE FROM lista WHERE id_producto = ?');
+        $query->execute([$id]);
+    }
+
     function removeProducto($id) {
-        $query = $this->db->prepare('DELETE FROM lista WHERE id_producto = ?; DELETE FROM productos WHERE id_producto = ?');
-        $query->execute([$id, $id]);
+        $query = $this->db->prepare('DELETE FROM productos WHERE id_producto = ?');
+        $query->execute([$id]);
         return $query->rowCount();
     }
 

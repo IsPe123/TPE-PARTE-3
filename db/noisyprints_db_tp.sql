@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2023 a las 21:14:26
+-- Tiempo de generación: 02-11-2023 a las 20:48:37
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `db_noisyprints`
+-- Base de datos: `noisyprints_db_tp`
 --
 
 -- --------------------------------------------------------
@@ -54,13 +54,6 @@ CREATE TABLE `lista` (
   `id_lista` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `lista`
---
-
-INSERT INTO `lista` (`id_producto`, `puntaje`, `dni`, `id_lista`) VALUES
-(11, 4, 43907171, 5);
-
 -- --------------------------------------------------------
 
 --
@@ -79,10 +72,14 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`nombre`, `descripcion`, `id_categoria`, `id_producto`) VALUES
-('HIPS', 'El hips se disuelve con acetona', 2, 11),
-('FLEX', NULL, 2, 13),
 ('Mate PETG', 'El petg para el mate es mejor porque aguanta mas temperatura', 12, 16),
-('pruebaa', 'Estoy probandoo', 12, 20);
+('Filamento reforzado', 'El mejor del mercado', 2, 25),
+('prueba3', 'Estoy probandoo', 12, 26),
+('prueba4', 'Estoy probandoo0', 12, 27),
+('prueba5', 'Estoy probandoo0', 12, 28),
+('prueba999', 'Estoy probandoo0', 12, 29),
+('prueba99', 'Estoy probandoo0', 12, 30),
+('memememe', 'lalalalala', 12, 31);
 
 -- --------------------------------------------------------
 
@@ -153,13 +150,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `lista`
 --
 ALTER TABLE `lista`
-  MODIFY `id_lista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_lista` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- Restricciones para tablas volcadas

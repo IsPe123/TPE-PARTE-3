@@ -30,8 +30,28 @@ class ApiProductosController {
             $parametros['order'] = $_GET['order'];
         }
 
+        if (isset($_GET['limit'])) {
+            $parametros['limit'] = $_GET['limit'];
+        }
+
+        if (isset($_GET['offset'])) {
+            $parametros['offset'] = $_GET['offset'];
+        }
+
+        if (isset($_GET['where'])) {
+            $parametros['where'] = $_GET['where'];
+        }
+
+        if (isset($_GET['type'])) {
+            $parametros['type'] = $_GET['type'];
+        }
+
         $productos = $this->model->getProductos($parametros);
-        $this->view->response($productos, 200);
+        if ($productos) {
+            $this->view->response($productos, 200);
+        } else {
+            $this->view->response("No se han podido traer los productos", 404);
+        }
     }
 
     public function getProducto($params = null) {
@@ -46,8 +66,11 @@ class ApiProductosController {
 
     public function deleteProducto($params = null) {
         $idProducto = $params[':ID'];
+
+        $this->model->removeProductoDeLista($idProducto);
         $success = $this->model->removeProducto($idProducto);
-        if (var_dump($success)) {
+
+        if ($success) {
             $this->view->response("El producto se borró exitosamente", 200);
         }
         else {
@@ -65,7 +88,7 @@ class ApiProductosController {
         $id = $this->model->insertProducto($nombre, $descripcion, $id_categoria);
 
         if ($id > 0) {
-            $this->view->response("El producto se agrego con exito", 200);
+            $this->view->response("El producto se agrego con exito", 201);
         } else {
             $this->view->response("El producto no se pudo agregar", 500);
         }

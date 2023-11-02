@@ -9,7 +9,7 @@ class DBHelper {
 
     public function __construct() {
         $this->host = 'localhost';
-        $this->database = 'db_noisyprints';
+        $this->database = 'noisyprints_db_tp';
         $this->user = 'root';
         $this->password = '';
     }
